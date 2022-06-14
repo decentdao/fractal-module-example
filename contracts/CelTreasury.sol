@@ -7,7 +7,7 @@ import "@fractal-framework/core-contracts/contracts/ModuleBase.sol";
 contract CelTreasury is ModuleBase {
     using SafeERC20 for IERC20;
     address celToken;
-    
+
 
     /// @notice Function for initializing the contract that can only be called once
     /// @param _accessControl The address of the access control contract
@@ -19,7 +19,7 @@ contract CelTreasury is ModuleBase {
         celToken = _celToken;
     }
 
-    function depositERC20Tokens(uint256 amount) external authorized {
+    function depositERC20Tokens(uint256 amount) external {
         IERC20(celToken).safeTransferFrom(msg.sender, address(this), amount);
     }
 
