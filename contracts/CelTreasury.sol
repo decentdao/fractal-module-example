@@ -6,7 +6,7 @@ import "@fractal-framework/core-contracts/contracts/ModuleBase.sol";
 
 contract CelTreasury is ModuleBase {
     using SafeERC20 for IERC20;
-    address celToken;
+    address public celToken;
 
 
     /// @notice Function for initializing the contract that can only be called once
