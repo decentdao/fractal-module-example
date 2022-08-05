@@ -6,8 +6,8 @@ import {
   DAO__factory,
   VotesTokenWithSupply,
   VotesTokenWithSupply__factory,
-  CelTreasury,
-  CelTreasury__factory,
+  Treasury,
+  Treasury__factory,
 } from "../typechain-types";
 import chai from "chai";
 import { ethers } from "hardhat";
@@ -17,7 +17,7 @@ const expect = chai.expect;
 describe("Treasury", function () {
   let dao: DAO;
   let accessControl: AccessControlDAO;
-  let treasury: CelTreasury;
+  let treasury: Treasury;
 
   // eslint-disable-next-line camelcase
   let erc20TokenAlpha: VotesTokenWithSupply;
@@ -35,7 +35,7 @@ describe("Treasury", function () {
 
       dao = await new DAO__factory(deployer).deploy();
       accessControl = await new AccessControlDAO__factory(deployer).deploy();
-      treasury = await new CelTreasury__factory(deployer).deploy();
+      treasury = await new Treasury__factory(deployer).deploy();
 
       await accessControl
         .connect(deployer)

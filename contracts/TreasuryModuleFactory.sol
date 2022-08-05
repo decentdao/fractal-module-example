@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 import "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 import "@openzeppelin/contracts/utils/Create2.sol";
-import "./CelTreasury.sol";
+import "./Treasury.sol";
 
 import "@fractal-framework/core-contracts/contracts/ModuleFactoryBase.sol";
 
@@ -29,7 +29,7 @@ contract TreasuryModuleFactory is
 
         address accessControl = abi.decode(data[0], (address));
         address treasuryImplementation = abi.decode(data[1], (address));
-        address celToken = abi.decode(data[2], (address));
+        address Token = abi.decode(data[2], (address));
         bytes32 salt = abi.decode(data[3], (bytes32));
 
         createdContracts[0] = Create2.deploy(
@@ -40,7 +40,7 @@ contract TreasuryModuleFactory is
                 abi.encode(treasuryImplementation, "")
             )
         );
-        CelTreasury(payable(createdContracts[0])).initialize(accessControl, celToken);
+        Treasury(payable(createdContracts[0])).initialize(accessControl, Token);
 
         return createdContracts;
     }
